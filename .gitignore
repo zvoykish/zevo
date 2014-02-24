@@ -6,3 +6,10 @@
 *.ear
 *.iml
 .idea*
+target/
+client/target/
+common/target/
+model-couple-with-dog/target/
+model-math-function/target/
+services/target/
+utils/target/

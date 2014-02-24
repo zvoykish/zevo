@@ -1,0 +1,29 @@
+<EvoConfiguration>
+
+    <!-- Number of solutions in each generation (should be 100) -->
+    <IndividualsCount>100</IndividualsCount>
+
+    <Selection>com.zvoykish.zevo.framework.operators.selection.FittestSelection</Selection>
+    <CrossOver>com.zvoykish.zevo.framework.operators.crossover.SingleCutCrossOver</CrossOver>
+    <Mutation>com.zvoykish.zevo.framework.cwd.solution1maledogsprefs.operators.mutation.CWDMutation</Mutation>
+    <ElitismEnabled>true</ElitismEnabled>
+    <TimeLimit>182</TimeLimit>
+    <IntervalPerCsvSample>30</IntervalPerCsvSample>
+    <CrossOverProbability>0.3</CrossOverProbability>
+    <MutationProbability>0.15</MutationProbability>
+    <NumberOfGenerationsToApplyMassiveMutation>500</NumberOfGenerationsToApplyMassiveMutation>
+
+    <Model>
+        <Name>50 girls, 50 guys, 50 dogs</Name>
+        <GenesisInitializer>com.zvoykish.zevo.model.cwd.solution1maledogsprefs.CWDGenesisInitializer
+        </GenesisInitializer>
+        <Evaluator>com.zvoykish.zevo.model.cwd.solution1maledogsprefs.CWDEvaluator</Evaluator>
+        <FitnessCalculator>com.zvoykish.zevo.model.EvaluationAsFitnessCalculator</FitnessCalculator>
+        <ExtraConfiguration>com.zvoykish.zevo.framework.cwd.CWDExtraConfiguration</ExtraConfiguration>
+    </Model>
+
+    <ModelExtra>
+        <PreferencesFile>CoupleWithDog_Preferences.xml</PreferencesFile>
+        <IndividualsPerSpecies>50</IndividualsPerSpecies>
+    </ModelExtra>
+</EvoConfiguration>

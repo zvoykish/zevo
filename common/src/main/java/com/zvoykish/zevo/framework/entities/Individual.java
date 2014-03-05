@@ -14,6 +14,8 @@ import java.io.Serializable;
  * Time: 01:06:12
  */
 public interface Individual<ConcreteGene extends Gene> extends Serializable {
+    long getId();
+
     @Nonnull
     Genotype<ConcreteGene> getGenotype();
 

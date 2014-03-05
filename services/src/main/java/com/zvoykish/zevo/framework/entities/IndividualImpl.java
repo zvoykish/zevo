@@ -5,6 +5,7 @@ import com.zvoykish.zevo.model.genetics.Gene;
 
 import javax.annotation.Nonnull;
 import javax.swing.*;
+import java.util.UUID;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,11 +14,22 @@ import javax.swing.*;
  * Time: 01:50:33
  */
 public class IndividualImpl<ConcreteGene extends Gene> implements Individual<ConcreteGene> {
+    private static long counter = 0;
+    private final long id;
+    private final String uuid;
+
     @Nonnull
     private Genotype<ConcreteGene> genotype;
 
     public IndividualImpl(@Nonnull Genotype<ConcreteGene> genotype) {
+        this.id = ++counter;
+        this.uuid = UUID.randomUUID().toString() + UUID.randomUUID().toString();
         this.genotype = genotype;
+    }
+
+    @Override
+    public long getId() {
+        return id;
     }
 
     @Nonnull

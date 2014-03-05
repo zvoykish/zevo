@@ -21,6 +21,7 @@
         <module>client</module>
         <module>model-math-function</module>
         <module>model-couple-with-dog</module>
+        <module>model-image-approximation</module>
     </modules>
 
     <dependencyManagement>

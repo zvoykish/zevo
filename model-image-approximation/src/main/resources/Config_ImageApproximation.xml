@@ -1,0 +1,31 @@
+<EvoConfiguration>
+
+    <!-- Number of solutions in each generation (should be 100) -->
+    <IndividualsCount>10</IndividualsCount>
+
+    <Selection>com.zvoykish.zevo.framework.operators.selection.FittestSelection</Selection>
+    <CrossOver>com.zvoykish.zevo.framework.operators.crossover.SingleCutCrossOver</CrossOver>
+    <Mutation>com.zvoykish.zevo.model.imageapprox.ImageApproxMutation</Mutation>
+    <ElitismEnabled>true</ElitismEnabled>
+    <TimeLimit>99999</TimeLimit>
+    <GenerationsLimit>100000</GenerationsLimit>
+    <IntervalPerCsvSample>30</IntervalPerCsvSample>
+    <CrossOverProbability>0.3</CrossOverProbability>
+    <MutationProbability>0.15</MutationProbability>
+    <NumberOfGenerationsToApplyMassiveMutation>500</NumberOfGenerationsToApplyMassiveMutation>
+
+    <Model>
+        <Name>Image Approximation</Name>
+        <GenesisInitializer>com.zvoykish.zevo.model.imageapprox.ImageApproxGenesisInitializer</GenesisInitializer>
+        <Evaluator>com.zvoykish.zevo.model.imageapprox.ImageApproxEvaluator</Evaluator>
+        <FitnessCalculator>com.zvoykish.zevo.model.EvaluationAsFitnessCalculator</FitnessCalculator>
+        <ExtraConfiguration>com.zvoykish.zevo.model.imageapprox.ImageApproxExtraConfiguration</ExtraConfiguration>
+    </Model>
+
+    <ModelExtra>
+        <ImageFile>jive-logo_black_bg.png</ImageFile>
+        <NumOfCircles>15</NumOfCircles>
+        <PhantomBin>./phantomjs</PhantomBin>
+        <SVGJsLocation>/Users/Zvoykish/SkyDrive/Dev/Java/zevo/model-image-approximation/svg.min.js</SVGJsLocation>
+    </ModelExtra>
+</EvoConfiguration>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html style="margin: 0; width: 500px; height: 500px;">
+<body style="margin: 0; width: 500px; height: 500px;">
+<span id="drawing" style="width: 500px; height: 500px;"></span>
+<script src="svg.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var draw = SVG('drawing').size(500, 500);
+    draw.circle(100).attr({ fill: '#ff0066' }).move(100, 100);
+    draw.circle(100.9).attr({ fill: '#445566' }).move(101, 100);
+    draw.circle(100.9).attr({ fill: '#ff0066' }).move(900, 900);
+</script>
+<script type="text/javascript">
+    document.getElementById("SvgjsSvg1002").remove();
+    document.getElementById("SvgjsSvg1000").setAttribute("style", "width: 500px; height: 500px;");
+</script>
+</body>
+</html>

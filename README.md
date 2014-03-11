@@ -16,6 +16,11 @@ The problem is finding the best 50-triplets whose sum of ratings is the optimal.
 You can play with the configuration by altering settings in the file: Config_CoupleWithDog.xml
 You can see the ratings (preferences) in the file: CoupleWithDog_Preferences.xml
 
+Note:
+The model-image-approximation module uses the following libraries:
+- SVG.JS - Used as a Javascript library to draw shapes within an HTML element (http://www.svgjs.com)
+- PhantomJS - Used to render HTML to PNG (http://phantomjs.org)
+
 Good luck.
 Feel free to extend the framework, it was implemented a few years ago and I haven't touched it since. :)
 -Zvika

@@ -69,7 +69,8 @@
                 <configuration>
                     <mainClass>com.zvoykish.zevo.client.Starter</mainClass>
                     <arguments>
-                        <argument>Config_ImageApproximation.xml</argument>
+                        <argument>Config_MonaLisa.xml</argument>
+                        <argument>-console</argument>
                     </arguments>
                 </configuration>
                 <executions>

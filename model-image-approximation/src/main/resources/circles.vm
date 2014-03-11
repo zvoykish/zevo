@@ -6,7 +6,7 @@
 <script type="text/javascript">
     var draw = SVG('drawing').size($width, $height);
         #foreach( $circle in $circles )
-        draw.circle($circle.Radius).attr({fill: $circle.Rgb}).move($circle.X, $circle.Y);
+        draw.circle($circle.Radius).opacity($circle.opacity).attr({fill: $circle.Rgb}).move($circle.X, $circle.Y);
         #end
 </script>
 <script type="text/javascript">

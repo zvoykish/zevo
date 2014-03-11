@@ -14,16 +14,16 @@ import java.awt.*;
 public class CircleGene implements Gene {
     private double x, y, radius;
     private int r, g, b;
-    private double transparency;
+    private double opacity;
 
-    public CircleGene(double x, double y, double radius, int r, int g, int b, double transparency) {
+    public CircleGene(double x, double y, double radius, int r, int g, int b, double opacity) {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        this.transparency = transparency;
+        this.r = Math.max(Math.min(r, 255), 0);
+        this.g = Math.max(Math.min(g, 255), 0);
+        this.b = Math.max(Math.min(b, 255), 0);
+        this.opacity = opacity;
     }
 
     public double getX() {
@@ -50,40 +50,53 @@ public class CircleGene implements Gene {
         return b;
     }
 
-    public double getTransparency() {
-        return transparency;
+    public double getOpacity() {
+        return opacity;
     }
 
     public CircleGene buildWithX(double x) {
-        return new CircleGene(x, y, radius, r, g, b, transparency);
+        return new CircleGene(x, y, radius, r, g, b, opacity);
     }
 
     public CircleGene buildWithY(double y) {
-        return new CircleGene(x, y, radius, r, g, b, transparency);
+        return new CircleGene(x, y, radius, r, g, b, opacity);
     }
 
     public CircleGene buildWithRadius(double radius) {
-        return new CircleGene(x, y, radius, r, g, b, transparency);
+        return new CircleGene(x, y, radius, r, g, b, opacity);
     }
 
     public CircleGene buildWithR(int r) {
-        return new CircleGene(x, y, radius, r, g, b, transparency);
+        return new CircleGene(x, y, radius, r, g, b, opacity);
     }
 
     public CircleGene buildWithG(int g) {
-        return new CircleGene(x, y, radius, r, g, b, transparency);
+        return new CircleGene(x, y, radius, r, g, b, opacity);
     }
 
     public CircleGene buildWithB(int b) {
-        return new CircleGene(x, y, radius, r, g, b, transparency);
+        return new CircleGene(x, y, radius, r, g, b, opacity);
     }
 
-    public CircleGene buildWithTransparency(double transparency) {
-        return new CircleGene(x, y, radius, r, g, b, transparency);
+    public CircleGene buildWithOpacity(double opacity) {
+        return new CircleGene(x, y, radius, r, g, b, opacity);
     }
 
     @Override
     public Component getAsComponent() {
         return new JPanel();
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "x=" + x +
+                ", y=" + y +
+                ", radius=" + radius +
+                ", r=" + r +
+                ", g=" + g +
+                ", b=" + b +
+                ", opacity=" + opacity +
+                '}';
     }
 }

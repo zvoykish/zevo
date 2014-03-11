@@ -6,7 +6,6 @@ import com.zvoykish.zevo.framework.IndividualFactory;
 import com.zvoykish.zevo.framework.entities.Individual;
 import com.zvoykish.zevo.framework.genetics.Genotype;
 import com.zvoykish.zevo.framework.operators.Mutation;
-import com.zvoykish.zevo.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,30 +32,29 @@ public class ImageApproxMutation extends Mutation<CircleGene> {
 
             if (Math.random() < getProbabilityForMutation()) {
                 CircleGene newGene;
-                int offset = (Math.random() > 0.5) ? 1 : -1;
                 switch ((int) (Math.random() * 7)) {
                     case 0:
-                        newGene = gene.buildWithX(gene.getX() + (Math.random() * 1) - 0.5);
+                        newGene = gene.buildWithX(gene.getX() + (Math.random() * 10) - 5);
                         break;
                     case 1:
-                        newGene = gene.buildWithY(gene.getY() + (Math.random() * 1) - 0.5);
+                        newGene = gene.buildWithY(gene.getY() + (Math.random() * 10) - 5);
                         break;
                     case 2:
-                        newGene = gene.buildWithRadius(gene.getRadius() + (Math.random() * 1) - 0.5);
+                        newGene = gene.buildWithRadius(gene.getRadius() + (Math.random() * 10) - 5);
                         break;
                     case 3:
-                        newGene = gene.buildWithR(gene.getR() + offset);
+                        newGene = gene.buildWithR(gene.getR() + ((int) ((Math.random() * 10) - 5)));
                         break;
                     case 4:
-                        newGene = gene.buildWithG(gene.getG() + offset);
+                        newGene = gene.buildWithG(gene.getG() + ((int) ((Math.random() * 10) - 5)));
                         break;
                     case 5:
-                        newGene = gene.buildWithB(gene.getB() + offset);
+                        newGene = gene.buildWithB(gene.getB() + ((int) ((Math.random() * 10) - 5)));
                         break;
                     case 6:
-                        Logger.getInstance().log("NOT IMPLEMENTED!");
-                        newGene = gene;
-//                        newGene = gene.buildWithTransparency(gene.getY() + (Math.random() * 1) - 0.5);
+                        double opacityOffset = (Math.random() * 0.02) - 0.01;
+                        double newOpacity = gene.getOpacity() + opacityOffset;
+                        newGene = gene.buildWithOpacity(Math.max(Math.min(newOpacity, 1.0), 0.0));
                         break;
                     default:
                         throw new RuntimeException("WTF?");

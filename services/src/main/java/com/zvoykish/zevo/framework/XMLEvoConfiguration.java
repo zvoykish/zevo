@@ -28,6 +28,7 @@ public class XMLEvoConfiguration implements EvoConfiguration {
     private double crossOverProbability;
     private double mutationProbability;
     private int numberOfGenerationsToApplyMassiveMutation;
+    private int minimumNumberOfWorkerThreadsHint;
     private Class<? extends Selection> selectionClass;
     private Class<? extends CrossOver> crossOverClass;
     private Class<? extends Mutation> mutationClass;
@@ -47,6 +48,7 @@ public class XMLEvoConfiguration implements EvoConfiguration {
     private static final String TAG_MUTATION_CLASS = "Mutation";
     private static final String TAG_CROSSOVER_CLASS = "CrossOver";
     private static final String TAG_NUMBER_OF_GENERATIONS_TO_APPLY_MASSIVE_MUTATION = "NumberOfGenerationsToApplyMassiveMutation";
+    private static final String TAG_MIN_NUMBER_OF_WORKER_THREADS_HINT = "MinimumNumberOfWorkerThreadsHint";
 
     private static final String TAG_ELITISM_ENABLED = "ElitismEnabled";
     private static final String TAG_CROSSOVER_PROBABILITY = "CrossOverProbability";
@@ -188,6 +190,16 @@ public class XMLEvoConfiguration implements EvoConfiguration {
                 numberOfGenerationsToApplyMassiveMutation = -1;
             }
 
+            String minimumNumberOfWorkerThreadsHintStr = rootElement
+                    .getChildTextTrim(TAG_MIN_NUMBER_OF_WORKER_THREADS_HINT);
+            try {
+                minimumNumberOfWorkerThreadsHint = Integer.valueOf(minimumNumberOfWorkerThreadsHintStr);
+            }
+            catch (Exception e) {
+                logger.log("Warning: Invalid number of worker threads hint value " +
+                        minimumNumberOfWorkerThreadsHintStr + ". Defaulting to 64.");
+                minimumNumberOfWorkerThreadsHint = 64;
+            }
 
             // Parse model element
             Element modelElement = rootElement.getChild(TAG_MODEL);
@@ -300,6 +312,11 @@ public class XMLEvoConfiguration implements EvoConfiguration {
     @Override
     public int getNumberOfGenerationsToApplyMassiveMutation() {
         return numberOfGenerationsToApplyMassiveMutation;
+    }
+
+    @Override
+    public int getMinimumNumberOfWorkerThreadsHint() {
+        return minimumNumberOfWorkerThreadsHint;
     }
 
     @Override

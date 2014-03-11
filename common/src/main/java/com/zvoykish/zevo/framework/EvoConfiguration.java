@@ -32,6 +32,8 @@ public interface EvoConfiguration {
 
     int getNumberOfGenerationsToApplyMassiveMutation();
 
+    int getMinimumNumberOfWorkerThreadsHint();
+
     Class<? extends Selection> getSelectionClass();
 
     Class<? extends CrossOver> getCrossOverClass();

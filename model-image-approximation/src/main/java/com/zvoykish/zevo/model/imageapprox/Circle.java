@@ -12,6 +12,7 @@ public class Circle {
     private String rgb;
     private double x;
     private double y;
+    private double opacity;
 
     public Circle(CircleGene gene) {
         this.radius = gene.getRadius();
@@ -21,6 +22,7 @@ public class Circle {
         String g = toHexWithPadding(gene.getG());
         String b = toHexWithPadding(gene.getB());
         this.rgb = "'#" + r + g + b + '\'';
+        this.opacity = gene.getOpacity();
     }
 
     private String toHexWithPadding(int r1) {
@@ -42,5 +44,9 @@ public class Circle {
 
     public double getY() {
         return y;
+    }
+
+    public double getOpacity() {
+        return opacity;
     }
 }

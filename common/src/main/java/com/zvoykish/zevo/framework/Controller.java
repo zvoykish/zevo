@@ -14,7 +14,7 @@ import com.zvoykish.zevo.utils.Pair;
 public interface Controller {
     void init();
 
-    Pair<Individual, Double> advanceSingleGeneration();
+    Pair<Individual, Double> advanceSingleGeneration(int generationNumber);
 
     void register(EvolutionListener listener);
 

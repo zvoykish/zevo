@@ -60,4 +60,8 @@ public class Logger {
     public String getFilename() {
         return filename;
     }
+
+    public PrintWriter getWriter() {
+        return writer;
+    }
 }

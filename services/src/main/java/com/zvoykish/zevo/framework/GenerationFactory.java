@@ -10,7 +10,17 @@ import com.zvoykish.zevo.framework.entities.GenerationImpl;
  * Time: 02:20:55
  */
 public class GenerationFactory {
+    private static ThreadLocal<Integer> generationNumber = new ThreadLocal<>();
+
     public static Generation createEmptyGeneration() {
         return new GenerationImpl();
+    }
+
+    public static Integer getGenerationNumber() {
+        return generationNumber.get();
+    }
+
+    public static void setGenerationNumber(Integer generationNumber) {
+        GenerationFactory.generationNumber.set(generationNumber);
     }
 }

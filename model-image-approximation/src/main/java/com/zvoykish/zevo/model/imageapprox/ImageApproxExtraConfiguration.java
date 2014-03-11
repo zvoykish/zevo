@@ -2,15 +2,12 @@ package com.zvoykish.zevo.model.imageapprox;
 
 import com.zvoykish.zevo.framework.EvoExtraConfiguration;
 import com.zvoykish.zevo.utils.Logger;
-import org.apache.velocity.app.Velocity;
 import org.jdom.Element;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,13 +19,19 @@ public class ImageApproxExtraConfiguration extends EvoExtraConfiguration {
     private String svgJsLocation;
     private String phantomBin;
     private int numOfCircles;
-    private Color[] pixels;
+    private CircleColor[] pixels;
     private int width;
     private int height;
     private BufferedImage image;
+    private String htmlOutputPath;
+    private String pngOutputPath;
+
+    private String resumePath;
 
     @Override
     protected void parseModelExtraElement(Element modelExtraElement) {
+        htmlOutputPath = modelExtraElement.getChildTextTrim("HtmlOutputPath");
+        pngOutputPath = modelExtraElement.getChildTextTrim("PngOutputPath");
         svgJsLocation = modelExtraElement.getChildTextTrim("SVGJsLocation");
         phantomBin = modelExtraElement.getChildTextTrim("PhantomBin");
         numOfCircles = Integer.valueOf(modelExtraElement.getChildTextTrim("NumOfCircles"));
@@ -41,14 +44,13 @@ public class ImageApproxExtraConfiguration extends EvoExtraConfiguration {
             pixels = ImageApproxUtils.getImagePixels(image);
         }
         catch (IOException e) {
-            Logger.getInstance().log("Failed reading image: " + imageFileName);
+            Logger logger = Logger.getInstance();
+            logger.log("Failed reading image: " + imageFileName);
             e.printStackTrace();
+            e.printStackTrace(logger.getWriter());
         }
 
-        Properties p = new Properties();
-        p.put("resource.loader", "class");
-        p.put("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-        Velocity.init(p);
+        resumePath = modelExtraElement.getChildTextTrim("ResumePath");
     }
 
     public String getPhantomBin() {
@@ -59,7 +61,7 @@ public class ImageApproxExtraConfiguration extends EvoExtraConfiguration {
         return numOfCircles;
     }
 
-    public Color[] getPixels() {
+    public CircleColor[] getPixels() {
         return pixels;
     }
 
@@ -73,5 +75,17 @@ public class ImageApproxExtraConfiguration extends EvoExtraConfiguration {
 
     public String getSvgJsLocation() {
         return svgJsLocation;
+    }
+
+    public String getHtmlOutputPath() {
+        return htmlOutputPath;
+    }
+
+    public String getPngOutputPath() {
+        return pngOutputPath;
+    }
+
+    public String getResumePath() {
+        return resumePath;
     }
 }

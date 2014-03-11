@@ -27,12 +27,16 @@ public class Starter {
     }
 
     public static void main(String[] args) {
+        String filename = System.getProperty("config.file");
+        if (filename == null || filename.trim().isEmpty()) {
+            filename = args[0];
+        }
         switch (args.length) {
             case 1:
-                new Starter(args[0], false).start();
+                new Starter(filename, false).start();
                 break;
             case 2:
-                new Starter(args[0], args[1].equalsIgnoreCase("-console")).start();
+                new Starter(filename, args[1].equalsIgnoreCase("-console")).start();
                 break;
             default:
                 System.out.println("Usage: Starter [configuration_file] <-console>");
@@ -63,15 +67,15 @@ public class Starter {
             while (currentTime - startTime < totalRuntime &&
                     (generationsLimit == -1 || generationsCount <= generationsLimit))
             {
-                logger.log("Advancing to next generation... (Time left: " +
-                        ((startTime + totalRuntime - currentTime) / 1000) + " seconds)");
-                Pair<Individual, Double> generationFinest = controller.advanceSingleGeneration();
+                generationsCount++;
+                logger.log("Advancing to next generation (" + generationsCount + "). Time left: " +
+                        ((startTime + totalRuntime - currentTime) / 1000) + " seconds");
+                Pair<Individual, Double> generationFinest = controller.advanceSingleGeneration(generationsCount);
                 Double newBestEvaluation = generationFinest.getSecond();
                 if (newBestEvaluation > bestEvaluation) {
                     bestIndividual = generationFinest.getFirst();
                     bestEvaluation = newBestEvaluation;
                 }
-                generationsCount++;
                 currentTime = new Date().getTime();
             }
 
@@ -97,6 +101,7 @@ public class Starter {
         }
         catch (Exception e) {
             e.printStackTrace();
+            e.printStackTrace(logger.getWriter());
             System.exit(-1);
         }
         finally {
